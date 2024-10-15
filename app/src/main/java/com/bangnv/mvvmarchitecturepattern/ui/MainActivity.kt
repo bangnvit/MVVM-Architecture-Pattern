@@ -10,6 +10,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Observer
 import com.bangnv.mvvmarchitecturepattern.databinding.ActivityMainBinding
+import com.bangnv.mvvmarchitecturepattern.models.User
+import com.bangnv.mvvmarchitecturepattern.utils.GlobalFunction
 import com.bangnv.mvvmarchitecturepattern.viewmodels.UserViewModel
 
 class MainActivity : AppCompatActivity() {
@@ -44,12 +46,22 @@ class MainActivity : AppCompatActivity() {
         binding.btnUpdateValue.setOnClickListener {
             val username = binding.edtName.text.toString()
             val email = binding.edtEmail.text.toString()
-            userViewModel.updateUserData(username, email)
+            userViewModel.updateUserData(User(username, email))
+
+            GlobalFunction.hideSoftKeyboard(this)
+            binding.edtName.clearFocus()
+            binding.edtEmail.clearFocus()
         }
 
         // Get default value
         binding.btnGetDefault.setOnClickListener {
             userViewModel.fetchDefaultUserData()
+
+            GlobalFunction.hideSoftKeyboard(this)
+            binding.edtName.clearFocus()
+            binding.edtEmail.clearFocus()
+            binding.edtName.setText("")
+            binding.edtEmail.setText("")
         }
 
     }

@@ -25,8 +25,7 @@ class UserViewModel : ViewModel() {
     }
 
     // Function to update user data from EditText
-    fun updateUserData(username: String, email: String) {
-        val updatedUser = User(username, email)
-        _userData.postValue(updatedUser)
+    fun updateUserData(user: User) {
+        _userData.postValue(user)
     }
 }
