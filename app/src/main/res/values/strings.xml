@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MVVM Architecture Pattern</string>
+    <string name="str_hint_edt_name">Enter Name</string>
+    <string name="str_hint_edt_email">Enter Email</string>
+    <string name="str_name">Name:</string>
+    <string name="str_email">Email:</string>
+    <string name="str_get_default">Get Default Value</string>
+    <string name="str_update_value">Update Value</string>
+</resources>
