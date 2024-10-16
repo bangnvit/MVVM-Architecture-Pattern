@@ -6,7 +6,7 @@ MVVM-Architecture-Pattern is a simple Android application built with Kotlin, usi
 
 [MVVM-Architecture-Pattern - Demo](https://www.youtube.com/)
 
-## Technologies Used: Kotlin, MVVM Architecture, LiveData, Viewmodel
+## Technologies Used:
 
 - **Kotlin**: The programming language used for building the Android application.
 - **MVVM Architecture**: A design pattern for separating concerns, making the app easier to maintain and test.
