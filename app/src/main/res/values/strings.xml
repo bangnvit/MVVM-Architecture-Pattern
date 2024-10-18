@@ -6,4 +6,10 @@
     <string name="str_email">Email:</string>
     <string name="str_get_default">Get Default Value</string>
     <string name="str_update_value">Update Value</string>
+    <string name="str_go_to_second_activity">Go to Second Activity</string>">
+    <string name="str_one_way_data_binding">One-way data binding</string>
+    <string name="str_two_way_data_binding">Two-way data binding</string>
+    <string name="str_description">(To see Two-way data binding)</string>
+    <string name="title_first">First</string>
+    <string name="title_second">Second</string>
 </resources>

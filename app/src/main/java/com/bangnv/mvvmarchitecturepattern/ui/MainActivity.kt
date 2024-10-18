@@ -1,6 +1,7 @@
 package com.bangnv.mvvmarchitecturepattern.ui
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -8,16 +9,22 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.databinding.ObservableField
 import androidx.lifecycle.Observer
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.setupWithNavController
+import com.bangnv.mvvmarchitecturepattern.R
 import com.bangnv.mvvmarchitecturepattern.databinding.ActivityMainBinding
 import com.bangnv.mvvmarchitecturepattern.models.User
 import com.bangnv.mvvmarchitecturepattern.utils.GlobalFunction
 import com.bangnv.mvvmarchitecturepattern.viewmodels.UserViewModel
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val userViewModel: UserViewModel by viewModels()
+    private lateinit var navController: NavController
 
     @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,39 +38,16 @@ class MainActivity : AppCompatActivity() {
         // Apply window insets to root view
         applyWindowInsets()
 
-        // Assign viewModel to binding
-        binding.viewModel = userViewModel
-        binding.lifecycleOwner = this
 
-        // Get user data and update the UI
-        userViewModel.userData.observe(this, Observer { user ->
-            binding.tvName.text = user.username
-            binding.tvEmail.text = user.email
-            Toast.makeText(this, "User updated: ${user.username}", Toast.LENGTH_SHORT).show()
-        })
 
-        // Update data
-        binding.btnUpdateValue.setOnClickListener {
-            val username = binding.edtName.text.toString()
-            val email = binding.edtEmail.text.toString()
-            userViewModel.updateUserData(User(username, email))
+        val navView: BottomNavigationView = binding.navView
 
-            GlobalFunction.hideSoftKeyboard(this)
-            binding.edtName.clearFocus()
-            binding.edtEmail.clearFocus()
-        }
+        // Sử dụng NavHostFragment để lấy NavController
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        navController = navHostFragment.navController
 
-        // Get default value
-        binding.btnGetDefault.setOnClickListener {
-            userViewModel.fetchDefaultUserData()
-
-            GlobalFunction.hideSoftKeyboard(this)
-            binding.edtName.clearFocus()
-            binding.edtEmail.clearFocus()
-            binding.edtName.setText("")
-            binding.edtEmail.setText("")
-        }
-
+        // Thiết lập BottomNavigationView với NavController
+        navView.setupWithNavController(navController)
     }
 
     private fun applyWindowInsets() {

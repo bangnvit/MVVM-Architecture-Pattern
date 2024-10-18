@@ -1,89 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.bangnv.mvvmarchitecturepattern.viewmodels.UserViewModel" />
-    </data>
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.WeatherActivity">
+        android:paddingTop="?attr/actionBarSize">
 
-        <EditText
-            android:id="@+id/edt_name"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_56dp"
-            android:layout_marginHorizontal="@dimen/_16dp"
-            android:layout_marginTop="@dimen/_16dp"
-            android:autofillHints=""
-            android:hint="@string/str_hint_edt_name"
-            android:inputType="textCapWords"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/nav_host_fragment_activity_main"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/nav_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navGraph="@navigation/mobile_navigation" />
 
-        <EditText
-            android:id="@+id/edt_email"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/_56dp"
-            android:layout_marginHorizontal="@dimen/_16dp"
-            android:autofillHints=""
-            android:hint="@string/str_hint_edt_email"
-            android:inputType="textEmailAddress"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/edt_name" />
-
-
-        <TextView
-            android:id="@+id/tv_name"
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_16dp"
-            android:layout_marginTop="@dimen/_16dp"
-            android:background="@color/light_gray"
-            android:padding="16dp"
-            android:text="@{viewModel.userData.username}"
-            android:textSize="20sp"
-            app:layout_constraintTop_toBottomOf="@id/edt_email" />
-
-        <TextView
-            android:id="@+id/tv_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_16dp"
-            android:layout_marginTop="@dimen/_10dp"
-            android:background="@color/light_gray"
-            android:padding="@dimen/_16dp"
-            android:text="@{viewModel.userData.email}"
-            android:textSize="@dimen/_18sp"
-            app:layout_constraintTop_toBottomOf="@id/tv_name" />
-
-
-        <Button
-            android:id="@+id/btn_get_default"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_30dp"
-            android:text="@string/str_get_default"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_email" />
-
-        <Button
-            android:id="@+id/btn_update_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_16dp"
-            android:text="@string/str_update_value"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_get_default" />
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

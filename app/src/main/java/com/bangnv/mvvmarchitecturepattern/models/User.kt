@@ -1,3 +1,8 @@
 package com.bangnv.mvvmarchitecturepattern.models
 
-data class User(val username: String, val email: String)
+import androidx.databinding.ObservableField
+
+data class User(
+    val username: ObservableField<String> = ObservableField(),
+    val email: ObservableField<String> = ObservableField()
+)
