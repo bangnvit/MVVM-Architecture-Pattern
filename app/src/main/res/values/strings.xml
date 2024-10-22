@@ -4,7 +4,7 @@
     <string name="str_hint_edt_email">Enter Email</string>
     <string name="str_name">Name:</string>
     <string name="str_email">Email:</string>
-    <string name="str_get_default">Get Default Value</string>
+    <string name="str_get_from_api">Get From API</string>
     <string name="str_update_value">Update Value</string>
     <string name="str_go_to_second_activity">Go to Second Activity</string>">
     <string name="str_one_way_data_binding">One-way data binding</string>

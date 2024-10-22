@@ -33,6 +33,7 @@
             android:layout_marginHorizontal="@dimen/_16dp"
             android:layout_marginTop="@dimen/_30dp"
             android:autofillHints=""
+            android:imeOptions="actionNext"
             android:hint="@string/str_hint_edt_name"
             android:inputType="textCapWords"
             app:layout_constraintEnd_toEndOf="parent"
@@ -46,6 +47,7 @@
             android:layout_marginHorizontal="@dimen/_16dp"
             android:autofillHints=""
             android:hint="@string/str_hint_edt_email"
+            android:imeOptions="actionDone"
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,12 +58,12 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_16dp"
-            android:layout_marginTop="@dimen/_16dp"
+            android:layout_marginTop="@dimen/_30dp"
             android:background="@color/light_gray"
             android:padding="16dp"
             android:text="@{viewModel.userData.username}"
             android:textSize="@dimen/_20sp"
-            app:layout_constraintTop_toBottomOf="@id/edt_email" />
+            app:layout_constraintTop_toBottomOf="@id/prb_loading" />
 
         <TextView
             android:id="@+id/tv_email"
@@ -77,11 +79,11 @@
 
 
         <Button
-            android:id="@+id/btn_get_default"
+            android:id="@+id/btn_get_from_api"
             android:layout_width="@dimen/_200dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_30dp"
-            android:text="@string/str_get_default"
+            android:text="@string/str_get_from_api"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_email" />
@@ -94,7 +96,17 @@
             android:text="@string/str_update_value"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_get_default" />
+            app:layout_constraintTop_toBottomOf="@id/btn_get_from_api" />
+
+        <ProgressBar
+            android:id="@+id/prb_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:layout_marginTop="@dimen/_30dp"
+            app:layout_constraintTop_toBottomOf="@id/edt_email"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

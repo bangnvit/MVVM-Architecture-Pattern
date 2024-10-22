@@ -8,7 +8,7 @@ import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.bangnv.mvvmarchitecturepattern.databinding.FragmentFirstBinding
-import com.bangnv.mvvmarchitecturepattern.models.User
+import com.bangnv.mvvmarchitecturepattern.models.offline.User
 import com.bangnv.mvvmarchitecturepattern.utils.GlobalFunction
 import com.bangnv.mvvmarchitecturepattern.viewmodels.UserViewModel
 
@@ -37,9 +37,18 @@ class FirstFragment : Fragment() {
         binding.viewModel = userViewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
+        // Observe isLoading LiveData to show/hide ProgressBar
+        userViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            if (isLoading) {
+                binding.prbLoading.visibility = View.VISIBLE
+            } else {
+                binding.prbLoading.visibility = View.GONE
+            }
+        }
+
         // Get default value
-        binding.btnGetDefault.setOnClickListener {
-            userViewModel.fetchDefaultUserData()
+        binding.btnGetFromApi.setOnClickListener {
+            userViewModel.fetchUserAPI()
 
             GlobalFunction.hideSoftKeyboard(requireActivity())
             binding.edtName.clearFocus()

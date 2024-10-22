@@ -4,12 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
-import com.bangnv.mvvmarchitecturepattern.databinding.FragmentFirstBinding
 import com.bangnv.mvvmarchitecturepattern.databinding.FragmentSecondBinding
 import com.bangnv.mvvmarchitecturepattern.viewmodels.UserViewModel
 

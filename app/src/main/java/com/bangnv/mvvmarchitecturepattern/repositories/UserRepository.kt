@@ -1,16 +1,12 @@
 package com.bangnv.mvvmarchitecturepattern.repositories
 
-import androidx.databinding.ObservableField
-import com.bangnv.mvvmarchitecturepattern.models.User
+import com.bangnv.mvvmarchitecturepattern.data.network.RetrofitClient
+import com.bangnv.mvvmarchitecturepattern.models.response.UserResponse
+import retrofit2.Response
 
 
 class UserRepository {
-    fun getUserData(): User {
-        // Fetch weather data from a remote server or local storage
-        // Here is a default example
-        return User(
-            ObservableField("Bang"),
-            ObservableField("Bang123@xmail.com")
-        )
+    suspend fun getUserResponse(): Response<UserResponse> {
+        return RetrofitClient.instance.getUserResponse()
     }
 }
