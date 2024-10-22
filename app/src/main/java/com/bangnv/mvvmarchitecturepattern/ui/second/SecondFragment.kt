@@ -12,13 +12,7 @@ import com.bangnv.mvvmarchitecturepattern.viewmodels.UserViewModel
 class SecondFragment : Fragment() {
 
     private var _binding: FragmentSecondBinding? = null
-
-    // This property is only valid between onCreateView() and onDestroyView().
-    private val binding get() = _binding!!
-
-    // Used to get ViewModel scoped to the current Fragment
-//    private val userViewModel: UserViewModel by viewModels()
-    // Used to get ViewModel scoped to the Activity, shared across multiple Fragments
+    private val binding get() = _binding ?: throw IllegalStateException("Binding should not be accessed when it is null")
     private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -26,15 +20,17 @@ class SecondFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentSecondBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
+        bindViewModel()
+
+        return binding.root
+    }
+
+    private fun bindViewModel() {
         // Assign viewModel to binding
         binding.viewModel = userViewModel
         binding.lifecycleOwner = viewLifecycleOwner
-
-        return root
     }
 
     override fun onDestroyView() {

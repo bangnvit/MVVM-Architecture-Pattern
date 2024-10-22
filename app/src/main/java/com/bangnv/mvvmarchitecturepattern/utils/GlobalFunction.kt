@@ -1,17 +1,21 @@
 package com.bangnv.mvvmarchitecturepattern.utils
 
 import android.app.Activity
+import android.util.Log
 import android.view.inputmethod.InputMethodManager
 
 object GlobalFunction {
     @JvmStatic
     fun hideSoftKeyboard(activity: Activity) {
-        try {
-            val inputMethodManager =
-                activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-            inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
-        } catch (ex: NullPointerException) {
-            ex.printStackTrace()
+        val inputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        // Check if currentFocus is not null/null
+        activity.currentFocus?.let { view -> // Not null
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+        } ?: run {
+            // currentFocus is null
+            Log.d("GlobalFunction", "No current focus to hide keyboard.")
         }
     }
 

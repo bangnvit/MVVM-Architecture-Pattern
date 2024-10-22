@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.ObservableField
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -15,13 +16,7 @@ import com.bangnv.mvvmarchitecturepattern.viewmodels.UserViewModel
 class FirstFragment : Fragment() {
 
     private var _binding: FragmentFirstBinding? = null
-
-    // This property is only valid between onCreateView() and onDestroyView().
-    private val binding get() = _binding!!
-
-    // Used to get ViewModel scoped to the current Fragment
-//    private val userViewModel: UserViewModel by viewModels()
-    // Used to get ViewModel scoped to the Activity, shared across multiple Fragments
+    private val binding get() = _binding ?: throw IllegalStateException("Binding should not be accessed when it is null")
     private val userViewModel: UserViewModel by activityViewModels()
 
     override fun onCreateView(
@@ -29,23 +24,38 @@ class FirstFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
-        val root: View = binding.root
 
+        bindViewModel()
+        observeLoading()
+        observeErrorMessage()
+        setupCLickListeners()
+
+        return binding.root
+    }
+
+    private fun bindViewModel() {
         // Assign viewModel to binding
         binding.viewModel = userViewModel
         binding.lifecycleOwner = viewLifecycleOwner
+    }
 
+    private fun observeLoading() {
         // Observe isLoading LiveData to show/hide ProgressBar
         userViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            if (isLoading) {
-                binding.prbLoading.visibility = View.VISIBLE
-            } else {
-                binding.prbLoading.visibility = View.GONE
+            binding.prbLoading.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+    }
+
+    private fun observeErrorMessage() {
+        userViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            if (message.isNotEmpty()) {
+                Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
             }
         }
+    }
 
+    private fun setupCLickListeners() {
         // Get default value
         binding.btnGetFromApi.setOnClickListener {
             userViewModel.fetchUserAPI()
@@ -67,8 +77,6 @@ class FirstFragment : Fragment() {
             binding.edtName.clearFocus()
             binding.edtEmail.clearFocus()
         }
-
-        return root
     }
 
     override fun onDestroyView() {
