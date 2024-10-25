@@ -15,4 +15,5 @@ MVVM-Architecture-Pattern is a simple Android application built with Kotlin, usi
 - **Data Binding**: Enables binding UI components in layouts to data sources in your app, minimizing the need for programmatic UI updates.
 - **Jetpack Navigation**: Provides a framework for navigating between different screens in the app, simplifying the implementation of navigation and improving user experience.
 - **Bottom Navigation Component**: A component for easily implementing bottom navigation in your app for quick access to top-level destinations.
+- **Repository Pattern**: A design pattern that acts as an intermediary between the data source and the application. It abstracts the data access logic and provides a clean API for data operations, promoting separation of concerns and enhancing code maintainability.
 - **Factory Pattern**: A creational design pattern used to create objects without specifying the exact class of object that will be created. It promotes loose coupling and enhances code maintainability.
