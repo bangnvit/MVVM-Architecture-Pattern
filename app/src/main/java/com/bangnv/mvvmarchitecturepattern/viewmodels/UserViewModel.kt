@@ -22,29 +22,41 @@ class UserViewModel : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
+    private val _errorMessage = MutableLiveData<String>()
+    val errorMessage: LiveData<String> = _errorMessage
+
     fun fetchUserAPI() {
         _isLoading.postValue(true) // Show ProgressBar
         viewModelScope.launch {
             try {
                 val response: Response<UserResponse> = userRepository.getUserResponse()
                 if (response.isSuccessful) {
-                    val userResponse = response.body()
-                    userResponse?.let {
-                        val user = User(
-                            ObservableField(it.username),
-                            ObservableField(it.email)
-                        )
+                    response.body()?.let {
+                        val user = convertResponseToUser(it) // Convert UserResponse to User
                         _userData.postValue(user)
                     }
                 } else {
-                    Log.d("UserViewModel", "Error: ${response.errorBody()}")
+                    handleError(response.errorBody()?.string())
                 }
             } catch (e: Exception) {
-                Log.d("UserViewModel", "API call failed: ${e.message}")
+                handleError(e.message)
             } finally {
                 _isLoading.postValue(false)  // Hide ProgressBar
             }
         }
+    }
+
+    // Convert UserResponse to User
+    private fun convertResponseToUser(userResponse: UserResponse): User {
+        return User(
+            ObservableField(userResponse.username),
+            ObservableField(userResponse.email)
+        )
+    }
+
+    private fun handleError(message: String?) {
+        Log.d("UserViewModel", "Error: $message")
+        _errorMessage.postValue(message ?: "Unknown error occurred")
     }
 
     // Function to update user data from EditText

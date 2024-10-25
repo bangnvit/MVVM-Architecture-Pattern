@@ -12,4 +12,12 @@
     <string name="str_description">(To see Two-way data binding)</string>
     <string name="title_first">First</string>
     <string name="title_second">Second</string>
+    <string name="title_setting">Setting</string>
+    <string name="title_language">Language</string>
+    <string name="str_setting_fragment">Setting Fragment</string>
+    <string name="str_language_fragment">Language Fragment</string>
+    <string name="str_setting_language">Setting Language</string>
+    <string name="str_value">60</string>
+    <string name="str_value_title">(Value need to send to Language Fragment)</string>
+    <string name="str_value_received_title">(Value received from Setting Fragment)</string>
 </resources>

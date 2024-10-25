@@ -3,18 +3,42 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_first">
+    app:startDestination="@id/nav_first">
 
     <fragment
         android:id="@+id/nav_first"
-        android:name="com.bangnv.mvvmarchitecturepattern.ui.first.FirstFragment"
+        android:name="com.bangnv.mvvmarchitecturepattern.ui.bot_first.FirstFragment"
         android:label="@string/title_first"
         tools:layout="@layout/fragment_first" />
 
     <fragment
         android:id="@+id/nav_second"
-        android:name="com.bangnv.mvvmarchitecturepattern.ui.second.SecondFragment"
+        android:name="com.bangnv.mvvmarchitecturepattern.ui.bot_second.SecondFragment"
         android:label="@string/title_second"
         tools:layout="@layout/fragment_second" />
+
+    <fragment
+        android:id="@+id/nav_setting"
+        android:name="com.bangnv.mvvmarchitecturepattern.ui.bot_setting.SettingFragment"
+        android:label="@string/title_setting"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_nav_setting_to_frag_language"
+            app:destination="@id/frag_language">
+            <argument
+                android:name="valueText"
+                app:argType="string" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/frag_language"
+        android:name="com.bangnv.mvvmarchitecturepattern.ui.testnavigation.LanguageFragment"
+        android:label="@string/title_language"
+        tools:layout="@layout/fragment_language">
+        <argument
+            android:name="valueText"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

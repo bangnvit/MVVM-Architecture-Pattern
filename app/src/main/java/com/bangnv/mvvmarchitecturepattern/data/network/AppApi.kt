@@ -11,6 +11,6 @@ interface AppApi {
 //    suspend fun getUserById(@Path("id") userId: Int): Response<UserResponse>
 
     @GET(GET_ONE_USER)
-    // Because creating api with free link so can not access by id...
+    // Because creating api with free link so can not access by id... as comment above
     suspend fun getUserResponse(): Response<UserResponse>
 }

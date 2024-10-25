@@ -11,4 +11,9 @@
         android:icon="@drawable/ic_nav_account"
         android:title="@string/title_second" />
 
+    <item
+        android:id="@+id/nav_setting"
+        android:icon="@drawable/ic_nav_setting"
+        android:title="@string/title_setting" />
+
 </menu>

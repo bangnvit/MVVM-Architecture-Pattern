@@ -1,6 +1,6 @@
 [versions]
 agp = "8.7.1"
-kotlin = "2.0.0"
+kotlin = "2.0.21"
 coreKtx = "1.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -12,8 +12,10 @@ constraintlayout = "2.1.4"
 
 lifecycleLivedataKtx = "2.8.6"
 lifecycleViewmodelKtx = "2.8.6"
-navigationFragmentKtx = "2.8.2"
-navigationUiKtx = "2.8.2"
+navigationFragmentKtx = "2.8.3"
+navigationUiKtx = "2.8.3"
+# Save data Navigation
+navSafeArgsKotlin = "2.8.3"
 
 # Network
 retrofit = "2.9.0"
@@ -50,4 +52,5 @@ logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-intercep
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+androidx-navigation-safeargs-kotlin= { id = "androidx.navigation.safeargs.kotlin", version.ref = "navSafeArgsKotlin" }
 
