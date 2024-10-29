@@ -47,7 +47,7 @@ class FirstFragment : Fragment() {
     private fun bindViewModel() {
         binding.apply {
             viewModel = userViewModel
-            lifecycleOwner = viewLifecycleOwner
+            lifecycleOwner = viewLifecycleOwner // Only for Data Binding: Set lifecycleOwner
         }
     }
 
