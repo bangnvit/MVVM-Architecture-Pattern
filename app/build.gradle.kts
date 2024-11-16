@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "com.bangnv.mvvmarchitecturepattern"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.bangnv.mvvmarchitecturepattern"
         minSdk = 24
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
